@@ -1,0 +1,28 @@
+@import "tailwindcss";
+
+@theme {
+  --color-navy: #18144d;
+  --color-navy-dark: #120f3a;
+  --color-royal: #2b33a6;
+  --color-slate: #57537c;
+  --color-lavender: #e5f0fe;
+  --font-display: "Archivo", system-ui, sans-serif;
+  --font-sans: "Sora", system-ui, sans-serif;
+  --font-roboto: "Roboto", system-ui, sans-serif;
+}
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+  body {
+    @apply bg-navy font-sans text-white antialiased;
+  }
+  h1, h2, h3 {
+    font-stretch: 112%;
+  }
+}
+
+.bg-royal-glow {
+  background: radial-gradient(ellipse at 15% 40%, #2b37b8 0%, #22268f 35%, #18144d 80%);
+}
