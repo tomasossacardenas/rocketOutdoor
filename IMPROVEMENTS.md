@@ -81,3 +81,21 @@ This is an audit of the current site (rocketoutdoorco.com on Wix) and of this Re
 - [ ] Add fence type, linear feet and photo upload to the quote form, and connect it to email
 - [ ] Unique titles/meta descriptions plus LocalBusiness JSON-LD
 - [ ] Offer expiry date and terms
+
+---
+
+## Status: `redesign/modern-ui` branch
+
+Implemented on this branch:
+
+- New visual design using **Poppins**, the same navy palette, and a lighter, editorial layout with more whitespace, real photos and fewer boxes
+- Hero with a clear headline, two CTAs (estimate + tap-to-call), and a trust row (Google rating, family-owned, HOA help, Spanish)
+- **Sticky mobile Call / Text / Free estimate bar**
+- Service-area strip, "How it works" process, recent-work grid, and an offer band that tells visitors how to claim it
+- Services page with a photo per fence type, "great for" tags, anchor sub-nav and an **FAQ**
+- Masonry gallery with an accessible lightbox (focus handling, keyboard, counter)
+- Richer quote form: fence type, preferred contact method, project details (still `mailto:`; connect a backend next)
+- Per-page titles and meta descriptions, **LocalBusiness JSON-LD**, Open Graph tags, hero preload
+- Skip link, visible focus styles, `prefers-reduced-motion` support, 404 page
+
+Still to do: real form backend, testimonials from actual Google reviews, Spanish pages, pre-rendering/SSR, license and insurance details.

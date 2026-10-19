@@ -2,27 +2,37 @@
 
 @theme {
   --color-navy: #18144d;
-  --color-navy-dark: #120f3a;
+  --color-navy-900: #100d38;
+  --color-navy-700: #2a2566;
   --color-royal: #2b33a6;
   --color-slate: #57537c;
-  --color-lavender: #e5f0fe;
-  --font-display: "Archivo", system-ui, sans-serif;
-  --font-sans: "Sora", system-ui, sans-serif;
-  --font-roboto: "Roboto", system-ui, sans-serif;
+  --color-mist: #8c8aa6;
+  --color-paper: #f6f6f9;
+  --color-line: #e3e2ec;
+  --font-sans: "Poppins", ui-sans-serif, system-ui, sans-serif;
 }
 
 @layer base {
   html {
     scroll-behavior: smooth;
+    -webkit-tap-highlight-color: transparent;
   }
   body {
-    @apply bg-navy font-sans text-white antialiased;
+    @apply bg-white font-sans text-navy antialiased;
   }
   h1, h2, h3 {
-    font-stretch: 112%;
+    @apply tracking-tight text-balance;
+  }
+  :focus-visible {
+    outline: 2px solid var(--color-royal);
+    outline-offset: 3px;
   }
 }
 
-.bg-royal-glow {
-  background: radial-gradient(ellipse at 15% 40%, #2b37b8 0%, #22268f 35%, #18144d 80%);
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+  }
 }

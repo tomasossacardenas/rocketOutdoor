@@ -1,53 +1,75 @@
-import { Link } from 'react-router-dom'
 import { fencingTypes } from '../data/site.js'
-
-function FenceType({ item }) {
-  return (
-    <div className="mx-auto max-w-[300px] px-4 py-10 text-center">
-      <h3 className="text-2xl">{item.title}</h3>
-      <p className="mt-4 text-[15px] font-light">{item.subtitle}</p>
-      <p className="mt-5 text-[15px] leading-snug font-light">{item.text}</p>
-    </div>
-  )
-}
+import Button from '../components/Button.jsx'
+import CtaBand from '../components/CtaBand.jsx'
+import Faq from '../components/Faq.jsx'
+import PageHero from '../components/PageHero.jsx'
+import SectionHeading from '../components/SectionHeading.jsx'
+import usePageMeta from '../components/usePageMeta.js'
+import { CheckIcon } from '../components/Icons.jsx'
 
 export default function Services() {
-  const [first, second, ...rest] = fencingTypes
+  usePageMeta(
+    'Vinyl, Aluminum, Wood & Chain-Link Fencing | Rocket Outdoor Co',
+    'Professional fence installation for homes and businesses in Central Florida: vinyl, aluminum, wood, chain-link, custom fences and gates.',
+  )
+
   return (
     <>
-      <section className="mx-auto max-w-[1100px] px-6 pt-16 pb-16 text-center md:pt-24">
-        <h1 className="font-display text-5xl font-bold md:text-[64px]">Fencing Solutions</h1>
-        <p className="mt-6 text-lg font-light">Tailored Options</p>
-        <p className="mx-auto mt-6 max-w-[760px] text-[16px] leading-relaxed font-light">
-          At Rocket Outdoor Co., we provide professional fence installation for residential and commercial
-          properties throughout Central Florida. We offer a variety of high-quality fencing options designed to meet
-          your needs for privacy, security, durability, and curb appeal. From vinyl and aluminum to wood and
-          chain-link fencing, our team can help you choose the right solution for your property.
-        </p>
-      </section>
+      <PageHero eyebrow="Services" title="Fencing solutions for every property">
+        Residential and commercial fence installation throughout Central Florida, designed for privacy, security,
+        durability and curb appeal.
+      </PageHero>
 
-      <section className="mx-auto max-w-[1400px] px-6">
-        <div className="grid md:grid-cols-2">
-          <div className="md:border-r md:border-white/80"><FenceType item={first} /></div>
-          <div><FenceType item={second} /></div>
-        </div>
-        <div className="grid border-t border-white/80 md:grid-cols-3">
-          {rest.map((item, i) => (
-            <div key={item.title} className={i < rest.length - 1 ? 'md:border-r md:border-white/80' : ''}>
-              <FenceType item={item} />
-            </div>
+      <nav aria-label="Fence types" className="sticky top-[68px] z-30 border-b border-line bg-white/95 backdrop-blur md:top-[105px]">
+        <ul className="mx-auto flex max-w-7xl gap-1 overflow-x-auto px-5 py-3 text-sm md:px-8">
+          {fencingTypes.map((t) => (
+            <li key={t.id}>
+              <a href={`#${t.id}`} className="block rounded-md px-3 py-1.5 whitespace-nowrap text-slate hover:bg-paper hover:text-navy">
+                {t.title}
+              </a>
+            </li>
           ))}
+        </ul>
+      </nav>
+
+      <div className="mx-auto max-w-7xl px-5 md:px-8">
+        {fencingTypes.map((t, i) => (
+          <section
+            key={t.id}
+            id={t.id}
+            className="grid scroll-mt-40 items-center gap-10 border-b border-line py-16 last:border-0 md:py-24 lg:grid-cols-2 lg:gap-20"
+          >
+            <div className={i % 2 ? 'lg:order-2' : ''}>
+              <img src={t.image} alt={t.alt} loading="lazy" className="aspect-[4/3] w-full rounded-lg object-cover" />
+            </div>
+            <div>
+              <p className="text-[13px] font-medium tracking-[0.14em] text-slate uppercase">{t.tagline}</p>
+              <h2 className="mt-3 text-3xl font-semibold md:text-4xl">{t.title === 'Custom & gates' ? 'Custom fences & gates' : `${t.title} fencing`}</h2>
+              <p className="mt-5 max-w-lg text-[17px] leading-relaxed text-slate">{t.text}</p>
+              <h3 className="mt-8 text-sm font-medium">Great for</h3>
+              <ul className="mt-3 flex flex-wrap gap-2">
+                {t.bestFor.map((b) => (
+                  <li key={b} className="flex items-center gap-1.5 rounded-md bg-paper px-3 py-1.5 text-sm text-navy">
+                    <CheckIcon className="h-3.5 w-3.5" /> {b}
+                  </li>
+                ))}
+              </ul>
+              <Button to="/contact" variant="outline" className="mt-8">Request a free quote</Button>
+            </div>
+          </section>
+        ))}
+      </div>
+
+      <section className="bg-paper">
+        <div className="mx-auto grid max-w-7xl gap-12 px-5 py-20 md:px-8 md:py-28 lg:grid-cols-[1fr_1.6fr]">
+          <SectionHeading eyebrow="FAQ" title="Common questions">
+            Don’t see your question? Call or text us. We’re happy to help.
+          </SectionHeading>
+          <Faq />
         </div>
       </section>
 
-      <div className="py-14 text-center">
-        <Link
-          to="/gallery"
-          className="inline-block rounded-full bg-white px-14 py-3 text-[15px] text-slate transition-colors hover:bg-lavender"
-        >
-          Gallery
-        </Link>
-      </div>
+      <CtaBand />
     </>
   )
 }
